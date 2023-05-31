@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .bussiness-data{
+            background-color: rgb(208, 231, 231);
+            box-shadow: rgb(15, 15, 15) 0px 2px 4px 0px, rgba(255, 255, 255, 0) 0px 2px 16px 0px;        
+        
+        }
+          /* Increase the size of the radio buttons */
+/* .form-check-input[type="radio"] {
+               width: 1.5em;
+               height: 1.5em;
+  } */
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript text</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                          I Shoop Crud
+                        </button>
+                      </h2>
+                      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            <div class="border p-2 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onclick="basicInfo()">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                      Basic Info
+                                    </label>
+                                </div>
+                                <div>
+                                    <p class="fst-italic text-danger " id="required_1">(reaquired)</p>
+                                </div>
+                                <div class="text-end">
+                                    <button class=" border-0 bg-transparent text-primary fw-bold" onclick="edit(0)" >Edit</button>
+                                </div>
+                            </div>
+                            <div class="border p-2 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onclick="businessInf0()">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                      Business Info
+                                    </label>
+                                </div>
+                                <p class="fst-italic text-danger" id = 'required_2'>(reaquired)</p>
+                                <div class="text-end">
+                                    <button class=" border-0 bg-transparent text-primary fw-bold" onclick="editTwo(1)" >Edit</button>
+                                </div>
+                            </div>
+                            <div class="border p-2 mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onclick="findUs()">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                      Find Us
+                                    </label>
+                                </div>
+                                <p class="fst-italic text-danger" id = 'required_3'>(reaquired)</p>
+                                <div class="text-end">
+                                    <button class=" border-0 bg-transparent text-primary fw-bold" onclick="editThree(2)" >Edit</button>
+                                </div>
+                            </div> 
+                     </div>
+                      </div>
+                      <div class="text-center">
+                        <button class="btn btn-primary " onclick="publish()">Publish</button>
+
+                      </div>
+
+                    </div>
+                    
+                      </div>
+
+                    </div>
+                    <div class="col-md-9">
+                        <div id="showOutput" class="p-5"> <p></p></div>
+                    </div>
+                  </div>
+                
+            </div>
+     
+</body>
+<script>
+    var arr = []; // Array to store data
+    var id = null;  //The id variable stores the index of that item.
+
+    // Function to display basic info form
+    function basicInfo(){
+        output = "\
+        <div class = 'row'>\
+            <div class = 'col-12 p-5 bg-secondary rounded ' id= 'form_1'>\
+                <div class ='h2 text-white text-center '>\
+                    Add data For Basic info\
+                </div>\
+                <div = 'mt-5'>\
+                        <input type='text' id='name' class='form-control p-3' placeholder='Enter Name' aria-label='Username' aria-describedby='basic-addon1'>\
+                        <input type='text' id='email' class='form-control mt-3 p-3' placeholder='Enter Email' aria-label='Username' aria-describedby='basic-addon1'>\
+                        <textarea class='form-control mt-3' placeholder='Leave a Description here' id='description' style='height: 100px' ></textarea>\
+                <div class = 'text-end mt-4'><button type='button' class='btn btn-primary ' onclick='confirm()'>Confirm</button>\
+            </div>\
+        </div>\
+        "
+        $("showOutput").innerHTML = output;
+        // edit(0);
+  } 
+
+       // Function to confirm and save basic info
+    function confirm(){
+    
+       var name = $("name").value;
+       var email = $("email").value;
+       var description = $("description").value;
+           
+    // When Any input field is empty then Show Alert Other Wise push the data into An Array
+        if(name !=='' && email !=='' && description !==''){
+          businessInf0();
+    $('required_1').innerHTML = 'save';
+            var obj = {
+                name: name,
+                email: email,
+                description: description
+            }
+            if(id==null){
+            arr.push(obj); // Push data into the array
+        }else{
+            arr[id] = obj;   // Update data at the specified index
+        }  
+        
+        }else{
+            alert('Please Fill All The Input Fields')
+        }
+console.log(arr);
+// clearData(); // Clear input fields
+
+    }
+
+    // This function Is Used For Clear Input Fields
+
+    function clearData(){
+        id = null;
+        $('name').value = '';
+        $('email').value = '';
+        $('description').value = '';
+    }
+
+  //  Function to edit basic info
+function edit(index) {
+    id = index;
+    $('name').value = arr[index].name;
+    $('email').value = arr[index].email;
+    $('description').value = arr[index].description;
+    return index;
+}
+
+    // Function to display business info form
+function businessInf0(){
+    var output ='\
+    <div class= "row">\
+        <div class = "col-12 p-5 bg-light rounded ">\
+            <div class ="p-2 rounded bussiness-data d-flex ">\
+                <div class = "h2  text-dark ">\
+                    Add Data for Bussiness Info\
+                </div>\
+                <div class = "text-end ms-auto "><button type="button" class="btn btn-primary" onclick="secondConfirm()">Confirm</button>\
+            </div>\
+            </div>\
+        <div class = "mt-3"><p class = "fw-bold">Retail Mopdel<span class = "text-danger fs-5 fw-bold">*</span></p></div>\
+        <div class ="text-secondary fst-italic">Select one</div>\
+        <div class="form-check"><input class="form-check-input" type="radio" name="flexRadioDefault" id="online" value="online"><label class="form-check-label" for="online">E-Commerce , Online Only</label></div>\
+        <div class="form-check"><input class="form-check-input" type="radio" name="flexRadioDefault" id="in_store_only" value="in_store_only"><label class="form-check-label" for="in_store_only">Retail, In-Store Only - No E-Commerce</label></div>\
+        <div class="form-check"><input class="form-check-input" type="radio" name="flexRadioDefault" id="both_online" value="both_online"><label class="form-check-label" for="both_online">Retail, Both Online & In-Store</label></div>\
+        <div class="form-check"><input class="form-check-input" type="radio" name="flexRadioDefault" id="with_store_front" value="with_store_front"><label class="form-check-label" for="with_store_front">Service WITH a Storefront</label></div>\
+        <div class="form-check"><input class="form-check-input" type="radio" name="flexRadioDefault" id="without_store" value="without_store"><label class="form-check-label" for="without_store">Service WITHOUT a Storefront</label></div>\
+        <div class = "mt-3"><p class = "fw-bold">Type Of Business<span class = "text-danger fs-5 fw-bold">*</span></p></div>\
+        <div class ="text-secondary fst-italic">Select one</div>\
+        <div class="form-check"><input class="form-check-input" type="radio" name="flexRadioDefaultTwo" id="service" value="service"><label class="form-check-label" for="flexRadioDefault1">Service</label></div>\
+        <div class="form-check"><input class="form-check-input" type="radio" name="flexRadioDefaultTwo" id="brand" value="brand"><label class="form-check-label" for="flexRadioDefault2">Brand</label></div>\
+        <div class="form-check"><input class="form-check-input" type="radio" name="flexRadioDefaultTwo" id="eco-marketplace100" value="eco-marketplace100"><label class="form-check-label" for="flexRadioDefault3">100% Eco-MarketPlace</label></div>\
+        <div class="form-check"><input class="form-check-input" type="radio" name="flexRadioDefaultTwo" id="partial-eco-marketplace" value="partial-eco-marketplace"><label class="form-check-label" for="flexRadioDefault4">Partial Eco-Marketplace</label></div>\
+        <div class="form-check"><input class="form-check-input" type="radio" name="flexRadioDefaultTwo" id="reseller" value="reseller"><label class="form-check-label" for="flexRadioDefault5">Reseller</label></div>\
+        <div class = "mt-3"><p class = "fw-bold">Launch Year<span class = "text-danger fs-5 fw-bold">*</span></p></div>\
+        <input type="text" class="form-control" aria-label="Sizing example input" placeholder="Launch Year" id="launch" aria-describedby="inputGroup-sizing-sm">\
+</div>\
+    </div>\
+                '
+    $('showOutput').innerHTML = output;
+  editTwo();
+}
+
+    // Function to Secondconfirm and save business info
+function secondConfirm() {
+  var selectedRadio_one = document.querySelector('input[name=flexRadioDefault]:checked');
+  var selectedRadio_Two = document.querySelector('input[name="flexRadioDefaultTwo"]:checked');
+  var launchYear = $('launch').value;
+
+  if (selectedRadio_one !== null && selectedRadio_Two !== null && launchYear !== '') {
+
+  $('required_2').innerHTML = 'save';
+  findUs();
+    var selectedRadioValue = selectedRadio_one.value;
+    var selectedRadioValueTwo = selectedRadio_Two.value;
+
+    var objTwo = {
+      selectedRadio_one: selectedRadioValue,
+      selectedRadio_Two: selectedRadioValueTwo,
+      launchYear: launchYear
+    };
+
+    if (id === null) {
+      arr.push(objTwo); 
+    } else {
+      arr[id] = objTwo;
+    }
+  } else {
+    alert('Please Fill  All the INput Fields');
+  }
+  console.log(arr);
+  // clearDataTwo();
+}
+  //  This function Is Used For Clear Input Fields
+    function clearDataTwo() {
+  id = null;
+  $('launch').value = '';
+
+  // Clear selected radio buttons one
+  // var selectedRadios = document.querySelectorAll('input[name="flexRadioDefault"]');
+  // selectedRadios.forEach(function(radio) {
+  //   radio.checked = false;
+
+  // });
+  // // Clear selected radio buttons Two
+  // var selectedRadiosTwo = document.querySelectorAll('input[name="flexRadioDefaultTwo"]');
+  // selectedRadiosTwo.forEach(function(radio) {
+  //   radio.checked = false;
+  // });
+  
+  //  Change The text When push The data into array
+} 
+
+   // Function to edit business info
+function editTwo(index) {
+    $(arr[index].selectedRadio_one).checked = true;
+    $(arr[index].selectedRadio_Two).checked = true;
+    $('launch').value = arr[index].launchYear;
+}
+
+    // Function to display Find Us Section
+function findUs() {
+  var output = '\
+    <div class="row">\
+      <div class="col-12 p-5 bg-secondary rounded form">\
+        <div class="h2 text-white text-center">Add data for Find Us</div>\
+        <div class="mt-5">\
+          <div class="d-flex align-items-center">\
+            <input type="text" id="business_name" class="form-control p-3" placeholder="Enter Business Name" aria-label="Location" aria-describedby="basic-addon1">\
+            <input type="text" id="https" class="form-control ms-3 p-3" placeholder="https://" aria-label="Phone" aria-describedby="basic-addon2">\
+            <button class="btn btn-primary ms-3" onclick="addMore()">+</button>\
+          </div>\
+        </div>\
+        <div id="additionalFields" class="mt-3">\
+        </div>\
+        <div class="text-end mt-4">\
+          <button type="button" class="btn btn-primary" onclick="confirmThree()">Confirm</button>\
+        </div>\
+      </div>\
+    </div>\
+  ';
+  $('showOutput').innerHTML = output;
+  editThree(2)
+}
+
+var addInputField = 0;
+
+//  This Function is Used For Add New Input Fields When Click On Add Button
+function addMore() {
+  if (addInputField >= 3) {
+    alert("No more input fields can be added.");
+    return;
+  }
+  
+  addInputField++;
+
+  var additionalFields = $('additionalFields');
+  var inputHtml = '\
+    <div class="d-flex align-items-center mt-2">\
+      <input type="text" id="business_name' + addInputField + '" class="form-control p-3" placeholder="Enter Business Name" aria-label="Additional Location" aria-describedby="basic-addon' + addInputField + '">\
+      <input type="text" id="https' + addInputField + '" class="form-control ms-3 p-3" placeholder="https://" aria-label="Additional Phone" aria-describedby="basic-addon' + (addInputField + 1) + '">\
+    </div>\
+  ';
+
+  additionalFields.innerHTML += inputHtml;
+}
+
+function confirmThree() {
+  var bussinessName = $('business_name').value;
+  var https = $('https').value;
+  
+  if (bussinessName !== '' && https !== '') {
+    var objThree = {
+      bussinessName: bussinessName,
+      https: https
+    };
+    
+    if (id == null) {
+      arr.push(objThree);
+    } else {
+      arr[id] = objThree;
+    }
+  } else {
+    alert('Please fill all the input fields.');
+  }
+  
+  console.log(arr);
+  clearDataThree();
+}
+
+function editThree(index) {
+  id = index;
+  $('business_name').value = arr[index].bussinessName;
+  $('https').value = arr[index].https;
+  return index;
+}
+
+// This function clears the data of input fields
+function clearDataThree() {
+  id = null;
+  $('business_name').value = "";
+  $('https').value = "";
+  $('required_3').innerHTML = "Save";
+}
+ // This functions Is Used For Show Next Output form
+//  function nextOne() {
+//       businessInf0();
+//     }
+
+//     function nextTwo(){
+//       findUs();
+// }
+// function nextThree(){
+//   basicInfo();
+// }
+
+// Main Array 
+var mainArray = [];
+function publish(){
+  if(arr != 0){
+    mainArray.push(arr);
+  $('required_1').innerHTML = 'Publish';
+  $('required_2').innerHTML = 'Publish';
+  $('required_3').innerHTML = 'publish';
+console.log(mainArray)
+  }else{
+    alert('Fill All portions Of I Shoop crud')
+  }
+
+}
+
+// This Function Is Used For Shortcut Method of  Get Id 
+function $(id) {
+  return document.getElementById(id);
+}
+</script>
+</html>

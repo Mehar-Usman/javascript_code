@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <title>Pak-wheel</title>
+</head>
+<style>
+  .pak {
+
+    background-image: linear-gradient(blue, aqua);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg {
+    background-color: darkviolet;
+  }
+</style>
+
+<body onload="listvehicle(vehicles)">
+  <div class="container">
+    <div class="bg">
+      <h1 class="text-center pak">PAK WHEEL CRUD</h1>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-md-3">
+            <div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Post add
+              </button>
+              <!-- Modal -->
+              <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Post Adds</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">PROVINCES</div>
+                          <select id="provinces" class="form-select" aria-label="Default select example">
+                            <option disabled selected> select </option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Sindh">Sindh</option>
+                            <option value="kpk">kpk</option>
+                            <option value="Blochistan">Blochistan</option>
+                            <!-- <option value="Azad kashmire">Azad kashmire</option> -->
+                            <!-- <option value="Faderal">Faderal</option> -->
+                          </select>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">CITY</div>
+                          <select id="city" class="form-select" aria-label="Default select example">
+                            <option disabled selected> select </option>
+                            <option value="Lahore">Lahore</option>
+                            <option value="Pattoki">Pattoki</option>
+                            <option value="Okara">Okara</option>
+                            <option value="Islamabad">Islamabad</option>
+                            <option value="Kirachi">Kirachi</option>
+                          </select>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">MAKE</div>
+                          <select id="make" class="form-select" aria-label="Default select example">
+                            <option disabled selected> select </option>
+                            <option value="Honda">Honda</option>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Suzuki">Suzuki</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Audi">Audi</option>
+                            <option value="Hyundai">Hyundai</option>
+                          </select>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">
+                            <label for=""> Car Name</label>
+                            <input id="name" type="text" class="w-100 p-1" placeholder="eg-Civic">
+                          </div>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">COLOR</div>
+                          <select id="color" class="form-select" aria-label="Default select example">
+                            <option disabled selected> select</option>
+                            <option value="White">White</option>
+                            <option value="Black">Black</option>
+                            <option value="Red">Red</option>
+                            <option value="Silver">Silver</option>
+                            <option value="Aqua Green">Aqua Green</option>
+                            <option value="Blue">Blue</option>
+                          </select>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">
+                            <label for=""> PRICE (PKR)</label>
+                            <input id="price" type="number" class="w-100 p-1" placeholder="SET A PRICE">
+                          </div>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">
+                            <label for="">Upload Images</label>
+                            <input id="img" type="file" class="w-100 border mb-3" placeholder="img">
+                          </div>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">
+                            <label for="">Model</label>
+                            <input id="model" type="text" class="w-100 border mb-3" placeholder="Model">
+                          </div>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">
+                            <label for="">Engine CC</label>
+                            <input id="engine" type="text" class="w-100 border mb-3" placeholder="Engine CC">
+                          </div>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">
+                            <label for="">KMs Driving</label>
+                            <input id="kilometer" type="text" class="w-100 border mb-3" placeholder="KMs Driving">
+                          </div>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">Engine type</div>
+                          <select id="enginetype" class="form-select" aria-label="Default select example">
+                            <option disabled selected> select</option>
+                            <option value="petrol">petrol</option>
+                            <option value="diesel">Diesel</option>
+                          </select>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">transmition</div>
+                          <select id="transmition" class="form-select" aria-label="Default select example">
+                            <option disabled selected> select</option>
+                            <option value="Automatic">Automatic</option>
+                            <option value="Manual">Manual</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                          Close
+                        </button>
+                        <button onclick="save()" type="button" class="btn btn-primary">
+                          Save changes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- popup end -->
+              <div class="bg-primary mt-3">
+                <div class=" h2">Show Result By:</div>
+              </div>
+            </div>
+            <div>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#search" aria-expanded="true" aria-controls="collapseOne">
+                      SEARCH ITEM
+                    </button>
+                  </h2>
+                  <div id="search" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="input-group mb-3">
+                        <input id="txt-filter" type="text" class="form-control" placeholder="item search" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn bg-secondary" type="button" id="button-addon2" onclick="filter()">Go</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#provinces" aria-expanded="true" aria-controls="collapseOne">
+                      PROVINCES
+                    </button>
+                  </h2>
+                  <div id="provinces" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="punjab" id="chk-province-punjab" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          PUNJAB
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="sindh" id="chk-province-sindh" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Sindh
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="kpk" id="chk-province-kpk" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          kpk
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="balochistan" id="chk-province-balochistan" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Balochistan
+                        </label>
+                      </div>
+                      <!-- <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="azadkashmir" id="chk-province-azadkashmir" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Azad Kashmir
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="fedral" id="chk-province-fedral" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          faderal
+                        </label>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#city" aria-expanded="true" aria-controls="collapseOne">
+                      CITY
+                    </button>
+                  </h2>
+                  <div id="city" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Lahore" id="chk-city-Lahore" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Lahore
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Pattoki" id="chk-city-Pattoki" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Pattoki
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Okara" id="chk-city-Okara" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Okara
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Islamabad" id="chk-city-Islamabad" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Islamabad
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Karachi" id="chk-city-Karachi" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Karachi
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#make" aria-expanded="true" aria-controls="collapseOne">
+                      Make
+                    </button>
+                  </h2>
+                  <div id="make" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Honda" id="chk-make-Honda" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Honda
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Toyota" id="chk-make-Toyota" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Toyota
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Suzuki" id="chk-make-Suzuki" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Suzuki
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="BMW" id="chk-make-BMW" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          BMW
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Audi" id="chk-make-Audi" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Audi
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Hyundai" id="chk-make-Hyundai" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Hyundai
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#color" aria-expanded="true" aria-controls="collapseOne">
+                      Color
+                    </button>
+                  </h2>
+                  <div id="color" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="White" id="chk-color-White" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          White
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Black" id="chk-color-Black" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Black
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Silver" id="chk-color-Silver" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Silver
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="AquaGreen" id="chk-color-AquaGreen" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Aqua Green
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Red" id="chk-color-Red" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Red
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Blue" id="chk-color-Blue" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Blue
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Price Range
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="input-group mb-3">
+                        <input id="txt-price-from"  type="text" class="form-control" placeholder="from" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input id="txt-price-to" type="text" class="form-control" placeholder="to" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn bg-secondary" type="button" id="button-addon2" onclick="filter()">Go</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Col 9 for Filter Items  -->
+          <div class="col-md-9 mt-4">
+            <div id="vehicles"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+    var arr = []; // Store filters Items in this array
+    var id  = null; 
+    function save(){
+      var obj = {
+        province: $('provinces').value,
+        city:$('city').value,
+        make:$('make').value,
+        carName:$('name').value,
+        color:$('color').value,
+        price:$('price').value,
+        img:$('img').files[0],
+        model:$('model').value,
+        engine:$('engine').value,
+        kilometer:$('kilometer').value,
+        engineType:$('enginetype').value,
+        transition:$('transition').value
+      } 
+      
+      let reader = new FileReader();
+      reader.onload = function(){
+        obj.name = reader.result;
+      } 
+      reader.readAsDataURL(obj.img);
+      setTimeout(function(){
+        if(id == null){
+          arr.push(obj);
+        }else{
+          arr[id] = obj;
+        }
+      },20)
+      addItem();
+    }
+    function addItem(items){
+      var output = '';
+      for(index in items){
+        output += "\
+        <div class = 'row bg-light py-2'>\
+        <div class = 'col-md-3 p-2'>\
+          <div> <img height = '140px' width = '140px' src = '" +items[index].img +"'></div>\
+          </div>\
+          <div class = 'col-md-9'>\
+            <div class='row'><div class ='col-7'> + "" + </div>\
+            <div class = 'col-5'></div>\
+            <div>\
+            </div>\ 
+         </div>\
+        "
+          
+          
+        
+      }
+    }
+
+    function $(id){
+      return document.getElementById(id);
+    }
+</script>
+</html>
+
+<!-- 
+function listItems() {
+  let output = "";
+  for (index in arr) {
+    output +=
+      "<tr>" +
+      "<td>" +arr[index].name +"</td>" +
+      "<td>" +arr[index].email +"</td>" +
+      "<td>" +arr[index].skills +"</td>" +
+      "<td>" +arr[index].city +"</td>" +
+      "<td>" + arr[index].gender + "</td>" +
+      "<td><button class='btn btn-primary' onclick='edit(" +index +")'>Edit</button><button class='btn btn-danger' onclick='remove(" +index + ")'>Delete</button></td>" +
+      "</tr>";
+  }
+  $("tbodyitems").innerHTML = output;
+} -->
